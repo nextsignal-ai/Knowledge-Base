@@ -2,3 +2,4 @@
 __pycache__/
 pyenv/
 qdrant_storage/
+qdrant_snapshots/

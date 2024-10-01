@@ -21,3 +21,6 @@ services:
       - "6333:6333"
     volumes:
       - ./qdrant_storage:/qdrant/storage:z
+      - ./qdrant_snapshots:/qdrant/snapshots:z
+    environment:
+      - QDRANT__SNAPSHOT_PATH=./qdrant_snapshots
