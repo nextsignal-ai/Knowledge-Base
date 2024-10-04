@@ -4,6 +4,7 @@ import json
 import os
 import time
 import psutil
+import sentry_sdk
 
 from fastapi import FastAPI, Response
 from api.models import InsertBody, ChunkBody
@@ -14,8 +15,18 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 dotenv.load_dotenv()
 
+sentry_dns = os.getenv('SENTRY_DNS')
+if sentry_dns:
+    sentry_sdk.init(
+        dsn=sentry_dns,
+        traces_sample_rate=os.getenv('SENTRY_TRACES_SAMPLE_RATE', 1.0),
+        profiles_sample_rate=os.getenv('SENTRY_PROFILES_SAMPLE_RATE', 1.0)
+    )
+
+
 vector_database = env.get_vector_database()
 reranking_model = env.get_reranking_model()
+
 
 app = FastAPI()
 

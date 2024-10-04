@@ -11,3 +11,4 @@ python-dotenv==1.0.0
 qdrant-client==1.9.1
 sentence-transformers==2.7.0
 psutil==5.9.8
+sentry-sdk[fastapi]==2.15.0
